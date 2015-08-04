@@ -20,7 +20,7 @@ func usage(){
 func main(){
   app := cli.NewApp()
   app.Name = "gomsg"
-  app.Usage = "Go Message - send logs from a file"
+  app.Usage = "gomsg - send logs from a file"
   app.Version = "1.0"
   app.Action = func(c *cli.Context) {
     cli.ShowAppHelp(c)
