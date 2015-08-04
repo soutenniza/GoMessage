@@ -12,6 +12,7 @@ import(
 )
 
   var message = "Usage: gomsg send <file> <ip:port>"
+  var cfmessage = "Usage: gomsg cf <syslog up:port> <graphite ip:port>"
 
 func usage(){
       log.Fatalf(message)
@@ -42,9 +43,39 @@ func main(){
         var server = args[1]
 
         fmt.Println("\nConnected and sending Logs")
-        for j := 0; j < 100; j++ {
+        for j := 0; j < 50; j++ {
           time.Sleep(5 * time.Second)
-          sendLogs(logs, server)
+          for i := 0; i < len(logs); i++ {
+            time.Sleep(500 * time.Millisecond)
+            sendLogs(logs[i], server)
+          }
+        }
+
+      },
+    },
+    {
+      Name:       "cf",
+      Usage:      cfmessage,
+      Action: func(c *cli.Context){
+        args := c.Args()
+        if len(args) < 2 {
+          cli.ShowAppHelp(c)
+          os.Exit(1)
+        }
+
+        var syslogs []string;
+        var graphite []string;
+        syslogs = parseFile("syslog.txt")
+        graphite = parseFile("graphite.txt")
+
+        fmt.Println("\nConnected and sending Logs")
+        for j := 0; j < 50; j++ {
+          time.Sleep(5 * time.Second)
+          for i := 0; i < len(syslogs); i++ {
+            time.Sleep(350 * time.Millisecond)
+            sendLogs(graphite[i], args[1])
+            sendLogs(syslogs[i], args[0])
+          }
         }
 
       },
@@ -71,16 +102,16 @@ func parseFile(f string) ([]string){
   return logs
 }
 
-func sendLogs(logs []string, s string){
+func sendLogs(logs string, s string){
   conn, err := net.Dial("tcp", s)
   if err != nil {
     log.Fatal(err)
     os.Exit(1)
   }
-  for i:= 0; i < len(logs); i++ {
-    time.Sleep(900)
-    var in = []byte(logs[i])
-    conn.Write(in)
+  if len(logs) > 1 {
+    writer := bufio.NewWriter(conn)
+    writer.WriteString(logs)
+    writer.Flush()
   }
 
   conn.Close()

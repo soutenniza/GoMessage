@@ -1,4 +1,4 @@
-Sending logstash logs to /var/log/logstash/logstash.log.
+
 2015-08-03T18:46:41.173Z 192.168.150.17 <46>2015-08-03T18:46:11.103797+00:00 10.244.0.138 rsyslogd [job=api_z1 index=0]  [origin software="rsyslogd" swVersion="7.4.6" x-pid="5238" x-info="http://www.rsyslog.com"] start
 
 2015-08-03T18:46:41.179Z 192.168.150.17 <43>2015-08-03T18:46:11.100534+00:00 10.244.0.138 rsyslogd-2221 [job=api_z1 index=0] module 'imuxsock' already in this config, cannot be added
@@ -5034,4 +5034,3 @@ Sending logstash logs to /var/log/logstash/logstash.log.
 2015-08-03T18:48:18.085Z 192.168.150.17 <14>2015-08-03T18:48:17.982916+00:00 10.244.0.6 vcap.nats [job=nats_z1 index=0]  {"timestamp":1438627697.981636,"source":"NatsStreamForwarder","log_level":"info","message":"dea.advertise","data":{"nats_message": "{\"id\":\"0-760600c770704c3e8770df4a4f3a344a\",\"stacks\":[\"cflinuxfs2\"],\"available_memory\":24576,\"available_disk\":98304,\"app_id_to_count\":{},\"placement_properties\":{\"zone\":\"z1\"}}","reply_inbox":null}}
 
 2015-08-03T18:48:18.452Z 192.168.150.17 <14>2015-08-03T18:48:18.348154+00:00 10.244.0.6 vcap.nats [job=nats_z1 index=0]  {"timestamp":1438627698.347938,"source":"NatsStreamForwarder","log_level":"info","message":"staging.advertise","data":{"nats_message": "{\"id\":\"0-760600c770704c3e8770df4a4f3a344a\",\"stacks\":[\"cflinuxfs2\"],\"available_memory\":24576,\"available_disk\":98304}","reply_inbox":null}}
-
