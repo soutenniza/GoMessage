@@ -18,5 +18,5 @@ gomsg send syslog.txt 192.168.13.37:7000
 
 Example for Graphite Events
 ```
-gomsg send graphite.txt 192.168.13.37:7001
+gomsg send graphite.txt 192.168.13.37:7002
 ```
